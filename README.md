@@ -19,7 +19,7 @@ ngrok.yaml
 ```
 
 ## 빌드 및 실행 방법
-- 레포지토리를 다운로드 받아 압축을 풉니다.
+- 레포지토리 내 `logsystem.tar` 파일을 다운로드 받아 압축을 풉니다.
 - `logsystem`으로 이동합니다.
 - ngrok 환경 변수 및 `ngrok.yaml`의 domain 값을 본인에 맞게 입력합니다.
 - `logserver`로 이동 후, `docker build -t logserver:latest`로 적재/조회서버 이미지를 빌드합니다.
