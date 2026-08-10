@@ -26,20 +26,20 @@ ngrok.yaml
 - 다시 logsystem으로 돌아과, `docker compose up -d --build` 로 시스템 컨테이너들을 생성합니다.
 - `ngrok.yaml`에서 입력한 domain 값으로 API를 실행합니다.
 - `move_logs_glacier.sh` 스크립트로 mongoDB 데이터를 minio(오브젝트 스토리지)로 옮길 수 있습니다.
- - `DAYS_AGO_MS=$(($(date -d "5 minutes ago" +"%s") * 1000 + 62135596800000))` 의 "5 minutes ago" 부분을 알맞게 수정해 주세요
+  - `DAYS_AGO_MS=$(($(date -d "5 minutes ago" +"%s") * 1000 + 62135596800000))` 의 "5 minutes ago" 부분을 알맞게 수정해 주세요
 
 ### 필요 환경 변수
 - `NGROK_AUTH`: 본인의 NGROK 토큰
 
 ### API (현재 작동 중)
 - https://dilemmic-miserly-elias.ngrok-free.dev/api/v1/stats/mobhunt : **GET**
- - 파라메터: mobNm (/mobhunt?mobNm=...)
+  - 파라메터: mobNm (/mobhunt?mobNm=...)
 - https://dilemmic-miserly-elias.ngrok-free.dev/api/v1/stats/itemgain : **GET**
- - 파라메터: userId (/itemgain?userId=...)
+  - 파라메터: userId (/itemgain?userId=...)
 
 ## 변경/미구현 사항 및 한계점
 - 앞서 말씀 드렸듯이, 과제 첨부 파일을 받지 못해 **공통명세를 직접 설계하여** 필수 지표 API를 구현하지 못했습니다.
- - 공통명세는 과제 제출 링크에 첨부한 문서 파일에 정의되어 있습니다.
+  - 공통명세는 과제 제출 링크에 첨부한 문서 파일에 정의되어 있습니다.
 - API 인증 키 헤더를 구현하지 못했습니다.
 - 더 안정적인 데이터 무결성을 위해 redis, mongoDB 클러스터화가 필요합니다.
 
