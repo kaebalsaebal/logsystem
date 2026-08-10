@@ -1,0 +1,9 @@
+version: '3'
+agent:
+  authtoken: ''
+
+tunnels:
+  jenkins:
+    proto: http
+    addr: 3000
+    domain: # 자신의 ngrok 엔드포인트 입력

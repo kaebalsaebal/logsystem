@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  logserver-redis:
+    image: redis:alpine
+    container_name: logserver-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/data:/data
+    restart: always
+
+  logserver-minio:
+    image: minio/minio
+    container_name: logserver-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./minio/data:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+    command: server /data --console-address ":9001"
+    restart: always
+
+  logserver-ngrok:
+    image: ngrok/ngrok:latest
+    container_name: logserver-ngrok
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTH}
+    command: start --all --config /etc/ngrok.yaml
+    volumes:
+      - ./ngrok.yaml:/etc/ngrok.yaml
+    network_mode: "host"
+    restart: always
+
+  logserver-mongo:
+    image: mongo:latest
+    container_name: logserver-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/db:/data/db
+    restart: always
+
+  logserver-main:
+    image: logserver:latest
+    container_name: logserver-main
+    ports:
+     - "3000:3000"
+    enviornment:
+     - REDIS_HOST=redis
+     - MONGO_URI=mongodb://logserver-mongo:27017/msw_logs
+    depends_on:
+     - logserver-redis
+     - logserver-mongo
+    restart: always
+
