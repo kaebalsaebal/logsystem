@@ -1,8 +1,5 @@
 # logsystem
 
-메일 오류 때문인지 과제 명세서 파일(pdf)을 받지 못하고 카카오톡 과제 제출 링크만 받아  
-임의로 제약사항과 공통 envelope/이벤트 타입, 집계 API를 명세한 점 양해 부탁드립니다..
-
 ## logsystem.tar 디렉토리 목록
 ```
 logsystem : 로그 적재 및 조회 서버
@@ -31,17 +28,11 @@ ngrok.yaml
 ### 필요 환경 변수
 - `NGROK_AUTH`: 본인의 NGROK 토큰
 
-### API (현재 작동 중)
-- https://dilemmic-miserly-elias.ngrok-free.dev/api/v1/stats/mobhunt : **GET**
+### API 엔드포인트
+- (GET) /api/v1/stats/mobhunt : 몬스터 사냥 로그 집계
   - 파라메터: mobNm (/mobhunt?mobNm=...)
-- https://dilemmic-miserly-elias.ngrok-free.dev/api/v1/stats/itemgain : **GET**
+- (GET) /api/v1/stats/itemgain : 플레이어 아이템 습득 로그 집계
   - 파라메터: userId (/itemgain?userId=...)
-
-## 변경/미구현 사항 및 한계점
-- 앞서 말씀 드렸듯이, 과제 첨부 파일을 받지 못해 **공통명세를 직접 설계하여** 필수 지표 API를 구현하지 못했습니다.
-  - 공통명세는 과제 제출 링크에 첨부한 문서 파일에 정의되어 있습니다.
-- API 인증 키 헤더를 구현하지 못했습니다.
-- 더 안정적인 데이터 무결성을 위해 redis, mongoDB 클러스터화가 필요합니다.
 
 ## 테스트 월드
 - 메이플월드 테스트베드를 구축해 직접 플레이하면서 로그를 전송할 수 있습니다.
